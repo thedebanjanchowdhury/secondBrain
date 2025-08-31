@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@font-face {
+  font-family: "Gambarino-Regular";
+  src: url("./assets/Gambarino-Regular.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-Bold";
+  src: url("./assets/neue-montreal/NeueMontreal-Bold.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-BoldItalic";
+  src: url("./assets/neue-montreal/NeueMontreal-BoldItalic.otf");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-Italic";
+  src: url("./assets/neue-montreal/NeueMontreal-Italic.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-Light";
+  src: url("./assets/neue-montreal/NeueMontreal-Light.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-LightItalic";
+  src: url("./assets/neue-montreal/NeueMontreal-LightItalic.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-Medium";
+  src: url("./assets/neue-montreal/NeueMontreal-Medium.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-MediumItalic";
+  src: url("./assets/neue-montreal/NeueMontreal-MediumItalic.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Neue-Montreal-Regular";
+  src: url("./assets/neue-montreal/NeueMontreal-Regular.otf");
+  font-weight: normal;
+}
