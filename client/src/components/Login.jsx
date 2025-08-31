@@ -1,20 +1,37 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [toast, setToast] = useState(null);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = axios.post("http://localhost:3000/api/v1/signin", {
+      const response = await axios.post("http://localhost:5000/api/v1/signin", {
         username,
         password,
       });
-      console.log(response);
+
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+
+        setToast({ message: "Login successful!", type: "success" });
+        setTimeout(() => {
+          setToast(null);
+          navigate("/dashboard");
+        }, 2000);
+      }
     } catch (error) {
-      alert(error.response.data.message);
+      setToast({
+        message: error.response?.data?.message || "Login failed!",
+        type: "error",
+      });
+      setTimeout(() => setToast(null), 3000);
     }
   };
 
@@ -32,36 +49,53 @@ const Login = () => {
           </h1>
         </div>
         <div className="card card-lg w-[70%] h-[70%] bg-base-100 mr-16 rounded-xl shadow-xl">
-          <div className="card-body flex flex-col gap-8">
+          <div className="card-body flex flex-col gap-6">
             <h2 className="card-title text-2xl ">Login to your BRAIN!</h2>
-            <fieldset className="fieldset mt-5">
-              <form onSubmit={handleLogin} >
+            <fieldset className="fieldset ">
+              <form onSubmit={handleLogin}>
                 <legend className="fieldset-legend text-xl">Username</legend>
                 <input
                   type="text"
-                  className="input input-accent mt-2"
+                  className="input input-lg input-accent mt-2 w-full"
                   placeholder="e.g. John Doe"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
-                <legend className="fieldset-legend text-xl mt-6">Password</legend>
+                <legend className="fieldset-legend text-xl mt-6">
+                  Password
+                </legend>
                 <input
                   type="password"
-                  className="input input-accent"
+                  className="input input-accent input-lg mt-2 w-full"
                   placeholder="**********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="card-actions">
+                  <button
+                    type="submit"
+                    className="btn btn-xl btn-primary hover:btn-accent w-full mt-10 text-2xl"
+                  >
+                    Login
+                  </button>
+                </div>
               </form>
             </fieldset>
-            <div className="card-actions">
-              <button className="btn btn-primary hover:btn-accent w-full mt-4 text-xl">
-                Login
-              </button>
-            </div>
           </div>
         </div>
       </div>
+
+      {toast && (
+        <div className="toast toast-center  toast-end">
+          <div
+            className={`alert ${
+              toast.type === "success" ? "alert-success" : "alert-error"
+            }`}
+          >
+            <span className="text-2xl">{toast.message}</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

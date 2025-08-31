@@ -53,7 +53,17 @@ const Home = () => {
             >
               Login
             </button>
-            <button className="btn btn-ghost rounded-full bg-accent-content w-[6vw] hover:bg-accent hover:text-accent-content p-2">
+            <button
+              className="btn btn-ghost rounded-full bg-accent-content w-[6vw] hover:bg-accent hover:text-accent-content p-2"
+              onClick={() => {
+                const token = localStorage.getItem("token");
+                if (token) {
+                  navigate("/dashboard");
+                } else {
+                  navigate("/login");
+                }
+              }}
+            >
               Your BRAIN
             </button>
           </div>
@@ -422,7 +432,7 @@ const Home = () => {
         </aside>
         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
           <a
-            href="https://github.com/debanjanchowdhury/second-brain"
+            href="https://github.com/thedebanjanchowdhury/"
             className="btn btn-ghost btn-sm rounded-full"
           >
             <Github />
@@ -435,8 +445,6 @@ const Home = () => {
           </a>
         </nav>
       </footer>
-
-
     </div>
   );
 };
