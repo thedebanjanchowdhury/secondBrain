@@ -8,26 +8,24 @@ const sidebarItems = [
   { name: "Videos", icon: <VideoIcon />, link: "/videos" },
   { name: "Documents", icon: <File />, link: "/documents" },
   { name: "Links", icon: <Link2 />, link: "/links" },
-  {name: "Tags", icon: <Hash />, link: "/tags"},
 ];
 
-const Sidebar = () => {
-  const navigate = useNavigate(); // ✅ must be inside component
-
+const Sidebar = ({ className = "" }) => {
+  const navigate = useNavigate();
   const handleNavigate = (path) => {
     navigate(path);
   };
 
   return (
-    <div className="w-[25%] h-screen bg-accent">
+    <div className={`w-[20vw] h-screen bg-accent ${className}`}>
       <div
         className="
         bg-primary w-full h-[10%] shadow-lg 
         rounded-br-md rounded-bl-md shadow-primary
         "
       >
-        <div className="w-full h-full flex items-center justify-center gap-6">
-          <Brain size={50} />
+        <div className="w-full h-full flex items-center justify-center gap-2">
+          <Brain size={45} />
           <h1 className="text-4xl font-[Neue-Montreal-BoldItalic]">
             SECOND BRAIN
           </h1>
@@ -53,7 +51,7 @@ const Sidebar = () => {
                 }}
                 onClick={() => handleNavigate(item.link)}
                 className="
-                flex items-center mt-6 ml-10 border-2 
+                flex items-center ml-10
                 text-accent-content hover:text-white border-accent-content
                 hover:bg-accent-content p-4 gap-2 text-2xl cursor-pointer rounded-2xl
                 transition-all duration-200 ease-in-out
