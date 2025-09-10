@@ -51,7 +51,9 @@ const Dashboard = () => {
               initial="normal"
               whileHover="hover"
               transition={{ duration: 0.2 }}
-              onClick={() => setOpen((prev) => !prev)}
+              onClick={() =>
+                document.getElementById("add-new-modal").showModal()
+              }
               className="
             btn btn-lg gap-4 btn-primary text-base-100 
             font-[Neue-Montreal-Bold] z-1000
@@ -61,24 +63,76 @@ const Dashboard = () => {
               Add New
             </motion.button>
 
-            {open && (
-              <ul className="absolute top-[100%] right-0 w-full h-full flex flex-col">
-                {menuItems.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="
-              mt-5 w-40 bg-accent 
-              rounded-box shadow-md p-2
-              cursor-pointer text-accent-content flex 
-              text-md
-              "
+            <dialog id="add-new-modal" className="modal">
+              <div className="modal-box w-[55%]">
+                <h2 className="text-3xl">Add New Content</h2>
+                <p className="opacity-50 text-sm">Enter Proper Details</p>
+                <div className="divider"></div>
+
+                <form
+                  action="submit"
+                  className="px-8 font-[Neue-Montreal-Regular] flex flex-col gap-6"
+                >
+                  <select
+                    defaultValue="Type selector"
+                    className="select select-accent select-xl w-full"
                   >
-                    {item.icon}
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
-            )}
+                    <option disabled={true}>Select a Type</option>
+                    <option>Tweet</option>
+                    <option>Youtube</option>
+                    <option>Link</option>
+                  </select>
+
+                  <label className="floating-label">
+                    <input
+                      type="text"
+                      placeholder="Enter Tag"
+                      className="input input-bordered input-xl 
+                      input-accent w-full"
+                    />
+                    <span>Enter Tag</span>
+                  </label>
+
+                  <label className="floating-label">
+                    <input
+                      type="text"
+                      placeholder="Enter Title"
+                      className="input input-bordered input-xl 
+                      input-primary w-full"
+                    />
+                    <span>Enter Title</span>
+                  </label>
+
+                  <label className="floating-label">
+                    <input
+                      type="text"
+                      placeholder="Enter Link"
+                      className="input input-bordered input-xl 
+                      input-primary w-full"
+                    />
+                    <span>Enter Link</span>
+                  </label>
+                </form>
+
+                <div className="divider "></div>
+                <form
+                  action="dialog"
+                  className="modal-backdrop flex justify-between"
+                >
+                  <div className="btn btn-lg w-[35%] hover:bg-primary hover:text-black text-white bg-accent">
+                    Submit
+                  </div>
+                  <div
+                    onClick={() =>
+                      document.getElementById("add-new-modal").close()
+                    }
+                    className="btn btn-sm btn-dash text-white w-[25%] flex "
+                  >
+                    Close
+                  </div>
+                </form>
+              </div>
+            </dialog>
           </div>
         </nav>
 
@@ -96,6 +150,14 @@ const Dashboard = () => {
               type="youtube"
               link="https://www.youtube.com/watch?v=4YXcwwhh2LA"
               title="New Train Sim Video🚆"
+            />
+          </div>
+
+          <div className="break-inside-avoid mb-4">
+            <Card
+              type="link"
+              link="https://github.com/emmabostian/design-inspiration?tab=readme-ov-file"
+              title="Design Inspiration"
             />
           </div>
 

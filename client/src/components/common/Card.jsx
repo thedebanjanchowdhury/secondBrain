@@ -25,7 +25,7 @@ const Card = ({ title, link, type }) => {
   return (
     <div
       className={`card w-[90%] ${
-        type === "youtube" ? "h-100" : "h-[100%]"
+        type === "youtube" ? "h-100" : "h-[70%]"
       } border-2 border-accent shadow-xl`}
     >
       <div className="card-body">
@@ -65,8 +65,17 @@ const Card = ({ title, link, type }) => {
               />
             </div>
           )}
-
           {type === "tweet" && <Tweet id={link.split("/status/")[1]} />}
+
+          {type === "link" && (
+            <div className="w-full h-full">
+              <iframe
+              className="w-full h-full"
+              src={link}
+              title="article-link-holder"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
